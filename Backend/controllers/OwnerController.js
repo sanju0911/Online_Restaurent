@@ -2,7 +2,7 @@ const Owner = require("../models/Owner");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv").config();
-
+const Restuarent = require("../models/Restuarent");
 const OwnerRegister = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -51,7 +51,29 @@ const OwnerLogin = async (req, res) => {
   }
 };
 
+const getallOwners = async (req, res) => {
+  try {
+    const Owners = await Owner.find().populate("restuarent");
+    res.status(200).json(Owners);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+const getOwnerById = async (req, res) => {
+  try {
+    const Ownerss = await Owner.findById(req.params.id).populate("restuarent");
+    res.status(200).json(Ownerss);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
 module.exports = {
   OwnerRegister,
   OwnerLogin,
+  getallOwners,
+  getOwnerById,
 };

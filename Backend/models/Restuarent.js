@@ -32,6 +32,12 @@ const RestuarentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Owner",
   },
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const Restuarent = mongoose.model("Restuarent", RestuarentSchema);
