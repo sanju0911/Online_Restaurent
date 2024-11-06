@@ -1,6 +1,7 @@
 const Owner = require("../models/Owner");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv").config();
 
 const OwnerRegister = async (req, res) => {
   const { username, email, password } = req.body;
@@ -39,8 +40,11 @@ const OwnerLogin = async (req, res) => {
     if (!validPassword) {
       return res.status(400).json({ message: "Invalid Password" });
     }
+    const token = jwt.sign({ OwnerID: Owner._id }, process.env.SECRET, {
+      expiresIn: "1h",
+    });
 
-    res.status(200).json({ message: "login Succesfull" });
+    res.status(200).json({ message: "login Succesfull", token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "internal server error" });

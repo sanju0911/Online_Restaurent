@@ -4,6 +4,7 @@ const port = 3000;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const OwnerRoutes = require("./routes/OwnerRoutes");
+const RestuarentRoutes = require("./routes/Restuarentroutes");
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -18,6 +19,7 @@ mongoose
   });
 
 app.use("/Owner", OwnerRoutes);
+app.use("/Restuarent", RestuarentRoutes);
 
 app.listen(port, () => {
   console.log("server is running on port 3000");

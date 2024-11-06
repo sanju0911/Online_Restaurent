@@ -14,6 +14,12 @@ const OwnerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  restuarent: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Restuarent",
+    },
+  ]
 });
 
 const Owner = mongoose.model("Owner", OwnerSchema);
