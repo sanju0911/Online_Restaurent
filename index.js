@@ -25,6 +25,10 @@ app.use("/Restuarent", RestuarentRoutes);
 app.use("/Products", ProductRoutes);
 app.use("/uploads", express.static("uploads"));
 
+app.get("/", (req, res) => {
+  res.send(<h1>WELCOME TO ONLINE_RESTUARENT</h1>);
+});
+
 app.listen(port, () => {
   console.log("server is running on port 3000");
 });
