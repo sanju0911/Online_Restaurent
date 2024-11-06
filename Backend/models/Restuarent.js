@@ -10,23 +10,18 @@ const RestuarentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  category: {
-    type: [
-      {
-        type: String,
-
-        enum: ["veg", "non-veg"],
-      },
-    ],
-  },
-  region: {
-    type: [
-      {
-        type: String,
-        enum: ["north", "south", "east", "west"],
-      },
-    ],
-  },
+  category: [
+    {
+      type: String,
+      enum: ["veg", "non-veg"],
+    },
+  ],
+  region: [
+    {
+      type: String,
+      enum: ["north", "south", "east", "west"],
+    },
+  ],
   offer: {
     type: String,
   },

@@ -40,7 +40,7 @@ const OwnerLogin = async (req, res) => {
     if (!validPassword) {
       return res.status(400).json({ message: "Invalid Password" });
     }
-    const token = jwt.sign({ OwnerID: Owner._id }, process.env.SECRET, {
+    const token = jwt.sign({ OwnerID: OwnerEmail._id }, process.env.SECRET, {
       expiresIn: "1h",
     });
 
