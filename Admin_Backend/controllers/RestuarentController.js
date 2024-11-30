@@ -22,7 +22,7 @@ const uploads = multer({ storage: Storage });
 
 const AddRestuarent = async (req, res) => {
   try {
-    const { restuarentname, area, region, category, offer } = req.body;
+    const { restuarentname, area, category, region, offer } = req.body;
     const image = req.file ? req.file.filename : undefined;
 
     const owner = await Owner.findById(req.OwnerID);
@@ -31,19 +31,19 @@ const AddRestuarent = async (req, res) => {
       return res.status(404).json({ error: "Owner not found" });
     }
 
-    const newRestuarent = new Restuarent({
+    const newRestaurant = new Restuarent({
       restuarentname,
       area,
-      region: Array.isArray(region) ? region : [region],
       category: Array.isArray(category) ? category : [category],
+      region: Array.isArray(region) ? region : [region],
       offer,
       image,
       Owner: req.OwnerID,
     });
 
-    const savedRestuarent = await newRestuarent.save();
+    const savedRestaurant = await newRestaurant.save();
 
-    owner.restuarent.push(savedRestuarent._id);
+    owner.restuarent.push(savedRestaurant._id);
 
     await owner.save();
 
@@ -53,6 +53,7 @@ const AddRestuarent = async (req, res) => {
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 const deleteResturarent = async (req, res) => {
   try {
     const restId = req.params.RestuarentId;

@@ -8,6 +8,9 @@ const RestuarentRoutes = require("./routes/Restuarentroutes");
 const ProductRoutes = require("./routes/ProductsRoutes");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
